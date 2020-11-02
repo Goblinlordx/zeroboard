@@ -1,16 +1,18 @@
 version: "3.7"
 
 services:
-  httpd:
-    build: ./docker/httpd
+  apache:
+    build: ./docker/apache
     volumes:
       - /var/www/html
     ports:
       - "9090:80"
+      - "9091:443"
 
   mysql:
-    build: ./docker/mysql
+    image: mysql:8.0.22
     volumes:
       - /var/lib/mysql
     environment:
+      - MYSQL_DATABASE=zeroboard
       - MYSQL_ROOT_PASSWORD=asdf1234
